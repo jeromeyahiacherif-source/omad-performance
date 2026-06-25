@@ -143,6 +143,35 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .rsub{font-size:11px;color:rgba(255,255,255,0.38);margin-top:2px;}
 .rwarn{font-size:11px;color:rgba(201,168,76,0.75);padding:10px 16px;background:rgba(201,168,76,0.04);border-top:1px solid rgba(201,168,76,0.10);line-height:1.65;}
 
+
+/* ROTATION INTELLIGENTE V34 */
+.rot-panel{background:#161616;border:1px solid rgba(201,168,76,0.18);border-radius:12px;padding:14px 16px;margin-bottom:14px;}
+.rot-panel-title{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.40);margin-bottom:10px;}
+.rot-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.rot-kpis div{background:#111;border:1px solid #202020;border-radius:8px;padding:10px 12px;}
+.rot-kpis span{display:block;font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:4px;}
+.rot-kpis strong{font-family:'Bebas Neue',sans-serif;font-size:24px;font-weight:400;color:#F0EDE8;letter-spacing:.5px;}
+.rot-select-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;padding:13px 16px;border-bottom:1px solid #1A1A1A;}
+.rot-select-row:last-child{border-bottom:none;}
+.rot-select-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:7px;}
+.rot-select-sub{font-size:11px;color:rgba(255,255,255,0.38);line-height:1.55;margin-top:6px;}
+.rsel{width:100%;background:#101010;color:#F0EDE8;border:1px solid #2A2A2A;border-radius:8px;padding:11px 12px;font-size:14px;font-weight:600;outline:none;}
+.rsel:focus{border-color:#C9A84C;box-shadow:0 0 0 1px rgba(201,168,76,0.35);}
+.rot-qty{text-align:right;min-width:82px;}
+.rot-qty strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:27px;font-weight:400;color:#C9A84C;line-height:1;white-space:nowrap;}
+.rot-qty span{display:block;font-size:10px;color:rgba(255,255,255,0.35);margin-top:4px;white-space:nowrap;}
+.rot-final{background:#161616;border-radius:12px;margin-bottom:14px;border:1px solid #202020;overflow:hidden;}
+.rot-final-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid #1A1A1A;}
+.rot-final-row:last-child{border-bottom:none;}
+.rot-final-row b{font-size:13px;color:#F0EDE8;font-weight:600;}
+.rot-final-row small{display:block;color:rgba(255,255,255,0.35);font-size:10px;margin-top:2px;line-height:1.45;}
+.rot-final-row strong{font-size:13px;color:#C9A84C;white-space:nowrap;}
+.rot-status{font-size:11px;line-height:1.7;color:rgba(255,255,255,0.46);background:#111;border:1px solid #202020;border-radius:10px;padding:12px 14px;margin-top:10px;}
+.rot-status.ok{border-color:rgba(61,190,110,0.28);color:rgba(255,255,255,0.55);}
+.rot-status.warn{border-color:rgba(201,168,76,0.35);color:rgba(201,168,76,0.84);}
+.rot-status.bad{border-color:rgba(232,38,26,0.35);color:rgba(232,38,26,0.84);}
+.rot-mini{font-size:10px;color:rgba(255,255,255,0.34);line-height:1.6;margin-top:8px;}
+
 /* POINT 8 — AJUSTER : .acase inchangés — accent gauche coloré */
 .acase{background:#161616;border-radius:10px;padding:14px 16px;margin-bottom:10px;border-left:4px solid #252525;}
 .acase.or{border-left-color:#C9A84C;}
@@ -175,11 +204,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 <!-- NAV -->
 <div class="nav">
-  <button class="nb on" data-nav="profil">Profil</button>
-  <button class="nb" data-nav="menu">Menu</button>
-  <button class="nb" data-nav="rotation">Rotation</button>
-  <button class="nb" data-nav="ajust">Ajuster</button>
-  <button class="nb" data-nav="faq">FAQ</button>
+  <button class="nb on" onclick="show('profil',this)">Profil</button>
+  <button class="nb" onclick="show('menu',this)">Menu</button>
+  <button class="nb" onclick="show('rotation',this)">Rotation</button>
+  <button class="nb" onclick="show('ajust',this)">Ajuster</button>
+  <button class="nb" onclick="show('faq',this)">FAQ</button>
 </div>
 
 <!-- PROFIL -->
@@ -201,19 +230,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <strong>Pourquoi ce calcul&nbsp;?</strong><br>
       La masse grasse ne consomme pas de calories &ndash; calculer sur le poids total surestimerait tes besoins r&eacute;els. Ton profil morphologique d&eacute;termine ton poids de r&eacute;f&eacute;rence.
     </div>
-    <div class="popt on" id="profA" data-profile="A">
+    <div class="popt on" id="profA" onclick="cas('A')">
       <h3>Profil Sec</h3>
       <div class="sous">Moins de 15&nbsp;% de masse grasse</div>
       <div class="desc">Ventre plat au repos, peu de graisse visible sous la peau. Tour de taille homme &lt;&nbsp;90&nbsp;cm. Pince cutan&eacute;e abdominale &lt;&nbsp;1&nbsp;cm.</div>
       <span class="coef">Poids de r&eacute;f. = poids total &times; 1,00</span>
     </div>
-    <div class="popt" id="profB" data-profile="B">
+    <div class="popt" id="profB" onclick="cas('B')">
       <h3>Surpoids Mod&eacute;r&eacute;</h3>
       <div class="sous">Entre 15 et 30&nbsp;% de masse grasse</div>
       <div class="desc">Graisse localis&eacute;e principalement sur l&rsquo;abdomen, ventre pr&eacute;sent au repos. Tour de taille homme 90&ndash;102&nbsp;cm. Pince cutan&eacute;e abdominale 1&ndash;3&nbsp;cm.</div>
       <span class="coef">Poids de r&eacute;f. = poids total &times; 0,80</span>
     </div>
-    <div class="popt" id="profC" data-profile="C">
+    <div class="popt" id="profC" onclick="cas('C')">
       <h3>Surpoids &#201;lev&eacute;</h3>
       <div class="sous">Plus de 30&nbsp;% de masse grasse</div>
       <div class="desc">Graisse visible sur l&rsquo;ensemble du corps, abdomen pro&eacute;minent au repos. Tour de taille homme &gt;&nbsp;102&nbsp;cm. Pince cutan&eacute;e abdominale &gt;&nbsp;3&nbsp;cm.</div>
@@ -226,7 +255,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     <div class="psec">
       <label>Poids total</label>
       <div class="pval"><span id="pv">85</span><span class="u">&nbsp;kg</span></div>
-      <input type="range" min="50" max="130" value="85" data-weight-slider>
+      <input type="range" min="50" max="130" value="85" oninput="upP(this.value)">
       <div class="slbl"><span>50 kg</span><span>130 kg</span></div>
     </div>
     <div class="cgrid">
@@ -252,8 +281,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <div class="prog-desc">Prise de masse musculaire &ndash; surplus calorique calibr&eacute;</div>
       <div class="prog-hint">Entra&icirc;nement = jours de s&eacute;ance &nbsp;&middot;&nbsp; Repos = jours sans s&eacute;ance</div>
       <div class="mode-row">
-        <button class="mb on-train" id="mBtn-train" data-mode="training">Entra&icirc;nement</button>
-        <button class="mb" id="mBtn-rest" data-mode="rest">Repos</button>
+        <button class="mb on-train" id="mBtn-train" onclick="setMode('training',this)">Entra&icirc;nement</button>
+        <button class="mb" id="mBtn-rest" onclick="setMode('rest',this)">Repos</button>
       </div>
     </div>
     <div class="prog-sep"><span>ou</span></div>
@@ -261,7 +290,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <span class="prog-label">Programme Recomposition</span>
       <div class="prog-desc">Perte de graisse &ndash; d&eacute;ficit calorique mod&eacute;r&eacute;, muscle pr&eacute;serv&eacute;</div>
       <div class="prog-hint">D&eacute;ficit mod&eacute;r&eacute; adapt&eacute; &agrave; ton profil &nbsp;&middot;&nbsp; Prot&eacute;ines maintenues</div>
-      <button class="mb-recomp" id="mBtn-recomp" data-mode="recomp">Activer Recomposition</button>
+      <button class="mb-recomp" id="mBtn-recomp" onclick="setMode('recomp',this)">Activer Recomposition</button>
     </div>
   </div>
 
@@ -390,56 +419,126 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 </div>
 
-<!-- ROTATION — POINT 7 : .rcase border doré via CSS -->
+<!-- ROTATION — V34 : moteur de substitution global -->
 <div class="sec" id="rotation">
-  <div class="ttl">Rotations</div>
-  <div class="ibox">Les aliments marqu&eacute;s <strong style="color:#C9A84C;">ROT</strong> dans le Menu ont une alternative ici. ★&nbsp;= r&eacute;f&eacute;rence de calcul utilis&eacute;e pour tes quantit&eacute;s.<br>Choisir une alternative ne modifie pas le reste du menu.</div>
+  <div class="ttl">Rotation intelligente</div>
+  <div class="ibox">
+    Les aliments marqu&eacute;s <strong style="color:#C9A84C;">ROT</strong> dans le Menu sont calcul&eacute;s ici avec tes param&egrave;tres actifs&nbsp;: morphotype, poids de r&eacute;f&eacute;rence et mode choisi dans Menu.<br>
+    La rotation ne se limite plus aux valeurs /100&nbsp;g&nbsp;: elle recalcule les quantit&eacute;s finales et compense automatiquement les &eacute;carts prot&eacute;ines / calories.
+  </div>
 
-  <div class="rcase">
-    <div class="rhdr"><div class="rdot"></div>GROUPE 1 &ndash; Prot&eacute;ine principale</div>
-    <div class="ropt rec"><div><div class="nm">Poulet / Dinde</div><div class="rsub">R&eacute;f&eacute;rence de calcul</div></div><div class="mc"><span class="hi">23&nbsp;g prot</span>110&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Poisson blanc</div><div class="rsub">Cabillaud, merlu, colin</div></div><div class="mc"><span class="hi">20&nbsp;g prot</span>90&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Saumon</div><div class="rsub">Om&eacute;ga-3 suppl&eacute;mentaires</div></div><div class="mc"><span class="hi">20&nbsp;g prot</span>200&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">B&oelig;uf maigre</div><div class="rsub">Fer + zinc naturels</div></div><div class="mc"><span class="hi">20&nbsp;g prot</span>150&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="rwarn">&#9888; Poisson blanc ou b&oelig;uf (20&nbsp;g prot/100&nbsp;g)&nbsp;: augmenter la quantit&eacute; de 15&nbsp;% par rapport au menu.<br>Saumon&nbsp;: augmenter la quantit&eacute; de 15&nbsp;% et r&eacute;duire l&rsquo;huile d&rsquo;olive du menu de 10&nbsp;g.</div>
+  <div class="rot-panel">
+    <div class="rot-panel-title">Profil actif</div>
+    <div class="rot-kpis">
+      <div><span>R&eacute;f&eacute;rence</span><strong id="rot-ref">&ndash;</strong></div>
+      <div><span>Mode</span><strong id="rot-mode">&ndash;</strong></div>
+      <div><span>Cible prot&eacute;ines</span><strong id="rot-target-p">&ndash;</strong></div>
+      <div><span>Cible calories</span><strong id="rot-target-k">&ndash;</strong></div>
+    </div>
   </div>
 
   <div class="rcase">
-    <div class="rhdr"><div class="rdot"></div>GROUPE 2 &ndash; L&eacute;gumineuses</div>
-    <div class="ropt rec"><div><div class="nm">Haricots rouges en conserve</div><div class="rsub">R&eacute;f&eacute;rence de calcul &ndash; Poids <strong style="color:#E8261A;">cuit</strong> &ndash; Potassium + fibres</div></div><div class="mc"><span class="hi">8&nbsp;g prot</span>101&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Lentilles vertes</div><div class="rsub">Poids <strong style="color:#E8261A;">cuit</strong> &ndash; Fer + prot&eacute;ines</div></div><div class="mc"><span class="hi">9&nbsp;g prot</span>116&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="rwarn">&#9888; Poids <strong>cuit</strong> uniquement. 100&nbsp;g cru &asymp; 250&nbsp;g cuit &ndash; toujours peser apr&egrave;s cuisson ou &eacute;gouttage.</div>
+    <div class="rhdr"><div class="rdot"></div>S&eacute;lection des aliments ROT</div>
+
+    <div class="rot-select-row">
+      <div>
+        <div class="rot-select-label">Groupe 1 &ndash; Prot&eacute;ine principale</div>
+        <select class="rsel" id="rot-protein" onchange="updRot()">
+          <option value="chicken">Poulet / Dinde &mdash; 23 g prot / 110 kcal</option>
+          <option value="fish">Poisson blanc &mdash; 20 g prot / 90 kcal</option>
+          <option value="salmon">Saumon &mdash; 20 g prot / 200 kcal</option>
+          <option value="beef">B&oelig;uf maigre &mdash; 20 g prot / 150 kcal</option>
+        </select>
+        <div class="rot-select-sub">Calcul prioritaire&nbsp;: conserver l&rsquo;apport prot&eacute;ique du bloc principal.</div>
+      </div>
+      <div class="rot-qty"><strong id="rot-q-protein">&ndash;</strong><span id="rot-u-protein">g</span></div>
+    </div>
+
+    <div class="rot-select-row">
+      <div>
+        <div class="rot-select-label">Groupe 2 &ndash; L&eacute;gumineuses</div>
+        <select class="rsel" id="rot-legume" onchange="updRot()">
+          <option value="beans">Haricots rouges en conserve &mdash; 8 g prot / 101 kcal</option>
+          <option value="lentils">Lentilles vertes cuites &mdash; 9 g prot / 116 kcal</option>
+        </select>
+        <div class="rot-select-sub">Poids cuit / &eacute;goutt&eacute; uniquement.</div>
+      </div>
+      <div class="rot-qty"><strong id="rot-q-legume">&ndash;</strong><span id="rot-u-legume">g cuits</span></div>
+    </div>
+
+    <div class="rot-select-row">
+      <div>
+        <div class="rot-select-label">Groupe 3 &ndash; Glucide de base</div>
+        <select class="rsel" id="rot-carb" onchange="updRot()">
+          <option value="rice">Riz complet &mdash; 7 g prot / 350 kcal</option>
+          <option value="pasta">P&acirc;tes compl&egrave;tes &mdash; 13 g prot / 352 kcal</option>
+          <option value="oats">Flocons d&rsquo;avoine &mdash; 13 g prot / 374 kcal</option>
+          <option value="sweet">Patate douce crue &mdash; 1,6 g prot / 86 kcal</option>
+          <option value="mix">50 % riz + 50 % flocons &mdash; 10 g prot / 362 kcal</option>
+        </select>
+        <div class="rot-select-sub">Calcul prioritaire&nbsp;: remplacer l&rsquo;&eacute;nergie du bloc glucide, puis corriger les prot&eacute;ines.</div>
+      </div>
+      <div class="rot-qty"><strong id="rot-q-carb">&ndash;</strong><span id="rot-u-carb">g sec</span></div>
+    </div>
+
+    <div class="rot-select-row">
+      <div>
+        <div class="rot-select-label">Groupe 4 &ndash; Beurre de noix</div>
+        <select class="rsel" id="rot-butter" onchange="updRot()">
+          <option value="peanut">Beurre de cacahu&egrave;tes pur &mdash; 25 g prot / 629 kcal</option>
+          <option value="almond">Beurre d&rsquo;amandes pur &mdash; 21 g prot / 614 kcal</option>
+        </select>
+        <div class="rot-select-sub">Produit pur&nbsp;: un seul ingr&eacute;dient.</div>
+      </div>
+      <div class="rot-qty"><strong id="rot-q-butter">&ndash;</strong><span id="rot-u-butter">g</span></div>
+    </div>
+
+    <div class="rot-select-row">
+      <div>
+        <div class="rot-select-label">Groupe 5 &ndash; Pain</div>
+        <select class="rsel" id="rot-bread" onchange="updRot()">
+          <option value="rye">Pain de seigle complet &mdash; 8,5 g prot / 259 kcal</option>
+          <option value="whole">Pain complet &mdash; 8,4 g prot / 250 kcal</option>
+          <option value="oatbread">Pain d&rsquo;avoine complet &mdash; 7 g prot / 250 kcal</option>
+        </select>
+        <div class="rot-select-sub">Macros proches, mais total recalcul&eacute; automatiquement.</div>
+      </div>
+      <div class="rot-qty"><strong id="rot-q-bread">&ndash;</strong><span id="rot-u-bread">g</span></div>
+    </div>
+
+    <div class="rot-select-row">
+      <div>
+        <div class="rot-select-label">Groupe 6 &ndash; Fermeture prot&eacute;ine lente</div>
+        <select class="rsel" id="rot-slow" onchange="updRot()">
+          <option value="fromage">Fromage blanc 0 % &mdash; 6,8 g prot / 51 kcal</option>
+          <option value="greek">Yaourt grec 0 % &mdash; 10 g prot / 57 kcal</option>
+        </select>
+        <div class="rot-select-sub">Calcul prioritaire&nbsp;: conserver le r&ocirc;le prot&eacute;ine lente.</div>
+      </div>
+      <div class="rot-qty"><strong id="rot-q-slow">&ndash;</strong><span id="rot-u-slow">g</span></div>
+    </div>
   </div>
 
-  <div class="rcase">
-    <div class="rhdr"><div class="rdot"></div>GROUPE 3 &ndash; Glucide de base</div>
-    <div class="ropt rec"><div><div class="nm">Riz complet</div><div class="rsub">R&eacute;f&eacute;rence &ndash; grammes secs</div></div><div class="mc"><span class="hi">7&nbsp;g prot</span>350&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">P&acirc;tes compl&egrave;tes</div><div class="rsub">Grammes secs avant cuisson</div></div><div class="mc"><span class="hi">13&nbsp;g prot</span>352&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Flocons d&rsquo;avoine</div><div class="rsub">B&ecirc;ta-glucane &ndash; IG&nbsp;55</div></div><div class="mc"><span class="hi">13&nbsp;g prot</span>374&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Patate douce</div><div class="rsub">Grammes crus &ndash; IG&nbsp;55</div></div><div class="mc"><span class="hi">1,6&nbsp;g prot</span>86&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="rwarn">&#9888; P&acirc;tes ou flocons (13&nbsp;g prot)&nbsp;: r&eacute;duire le poulet de 33&nbsp;%.<br>Patate douce (1,6&nbsp;g prot)&nbsp;: augmenter le poulet de 29&nbsp;%.<br>Si ton poids de r&eacute;f&eacute;rence d&eacute;passe 100&nbsp;kg&nbsp;: utilise 50&nbsp;% riz + 50&nbsp;% flocons d&rsquo;avoine pour ta portion totale de glucides. Dans ce cas, r&eacute;duis la quantit&eacute; totale de poulet de 33&nbsp;%.</div>
+  <div class="divider"></div>
+  <div class="ttl">Menu final en rotation</div>
+  <div class="rot-final" id="rot-final-list"></div>
+
+  <div class="tgrid">
+    <div class="tbox">
+      <span class="tl">Prot&eacute;ines</span>
+      <span class="tv" id="rot-total-p">&ndash;</span>
+      <span class="tr">cible <span id="rot-cible-p">&ndash;</span></span>
+    </div>
+    <div class="tbox">
+      <span class="tl">Calories</span>
+      <span class="tv" id="rot-total-k">&ndash;</span>
+      <span class="tr">cible <span id="rot-cible-k">&ndash;</span></span>
+    </div>
   </div>
 
-  <div class="rcase">
-    <div class="rhdr"><div class="rdot"></div>GROUPE 4 &ndash; Beurre de noix</div>
-    <div class="ropt rec"><div><div class="nm">Beurre de cacahu&egrave;tes pur</div><div class="rsub">R&eacute;f&eacute;rence &ndash; ingr&eacute;dient unique</div></div><div class="mc"><span class="hi">25&nbsp;g prot</span>629&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Beurre d&rsquo;amandes pur</div><div class="rsub">Vit.&nbsp;E + magn&eacute;sium</div></div><div class="mc"><span class="hi">21&nbsp;g prot</span>614&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="rwarn">&#9888; Toujours &laquo;&nbsp;pur&nbsp;&raquo; &ndash; un seul ingr&eacute;dient sur l&rsquo;&eacute;tiquette.</div>
-  </div>
-
-  <div class="rcase">
-    <div class="rhdr"><div class="rdot"></div>GROUPE 5 &ndash; Pain</div>
-    <div class="ropt rec"><div><div class="nm">Pain de seigle complet</div><div class="rsub">R&eacute;f&eacute;rence de calcul</div></div><div class="mc"><span class="hi">8,5&nbsp;g prot</span>259&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Pain complet</div><div class="rsub">Alternative courante</div></div><div class="mc"><span class="hi">8,4&nbsp;g prot</span>250&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Pain d&rsquo;avoine complet</div><div class="rsub">B&ecirc;ta-glucane &ndash; IG mod&eacute;r&eacute;</div></div><div class="mc"><span class="hi">7,0&nbsp;g prot</span>250&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="rwarn">&#9888; Macros tr&egrave;s proches &ndash; quantit&eacute; inchang&eacute;e.</div>
-  </div>
-
-  <div class="rcase">
-    <div class="rhdr"><div class="rdot"></div>GROUPE 6 &ndash; Fermeture prot&eacute;ine lente</div>
-    <div class="ropt rec"><div><div class="nm">Fromage blanc 0&nbsp;%</div><div class="rsub">R&eacute;f&eacute;rence &ndash; cas&eacute;ine lente</div></div><div class="mc"><span class="hi">6,8&nbsp;g prot</span>51&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="ropt"><div><div class="nm">Yaourt grec 0&nbsp;%</div><div class="rsub">Plus prot&eacute;in&eacute; &ndash; texture ferme</div></div><div class="mc"><span class="hi">10&nbsp;g prot</span>57&nbsp;kcal / 100&nbsp;g</div></div>
-    <div class="rwarn">&#9888; Yaourt grec (10&nbsp;g prot/100&nbsp;g)&nbsp;: r&eacute;duire la quantit&eacute; de 15&nbsp;% lors de son utilisation.</div>
+  <div class="rot-status" id="rot-status">S&eacute;lectionne une rotation pour afficher les compensations.</div>
+  <div class="rot-mini">
+    Base interne du calcul&nbsp;: macros du fichier V33. Les r&eacute;sultats sont arrondis au gramme pour un usage pratique. Les variations r&eacute;elles d&eacute;pendent des marques, cuissons et &eacute;gouttages.
   </div>
 </div>
 
@@ -477,39 +576,39 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   <div class="ttl">FAQ</div>
   <div class="card">
     <div class="fi">
-      <div class="fq" data-faq-toggle>Sensibilit&eacute; aux produits laitiers&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Sensibilit&eacute; aux produits laitiers&nbsp;?</div>
       <div class="fa">Remplacer k&eacute;fir &rarr; lait ferment&eacute; nature (leche fermentada) &ndash; m&ecirc;me effet probiotique, macros proches.<br>Remplacer fromage blanc &rarr; queso cottage 0&nbsp;% &ndash; 11&nbsp;g prot / 72&nbsp;kcal / 100&nbsp;g.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Je n&rsquo;arrive pas &agrave; tout manger&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Je n&rsquo;arrive pas &agrave; tout manger&nbsp;?</div>
       <div class="fa">Normal les 2 &agrave; 3 premi&egrave;res semaines &ndash; l&rsquo;estomac s&rsquo;adapte progressivement au volume OMAD.<br><br>R&egrave;gle absolue&nbsp;: ne jamais r&eacute;duire l&rsquo;&eacute;tape 2 (bloc prot&eacute;ique).<br><br>Si besoin&nbsp;: r&eacute;duire temporairement la portion de glucide selon ton ressenti, sans d&eacute;passer 20&ndash;25&nbsp;% de la quantit&eacute; calcul&eacute;e. Revenir aux quantit&eacute;s compl&egrave;tes d&egrave;s que possible.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Vitamine D&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Vitamine D&nbsp;?</div>
       <div class="fa">La vitamine D est l&rsquo;un des rares micronutriments que l&rsquo;alimentation seule ne suffit pas &agrave; couvrir. Une suppl&eacute;mentation quotidienne est recommand&eacute;e &agrave; titre pr&eacute;ventif &ndash; consulte un professionnel de sant&eacute; pour le dosage adapt&eacute;.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Quand prendre le repas&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Quand prendre le repas&nbsp;?</div>
       <div class="fa">Consomme ton repas dans les 4 heures suivant l&rsquo;entra&icirc;nement.<br>Ce qui prime avant tout&nbsp;: respecter le menu complet chaque jour.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Les sardines tous les jours&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Les sardines tous les jours&nbsp;?</div>
       <div class="fa">Sans risque. Sardines = bas de la cha&icirc;ne alimentaire &ndash; mercure tr&egrave;s bas (FDA/EFSA).<br>Meilleure source d&rsquo;om&eacute;ga-3 EPA+DHA pour une prise quotidienne.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Cr&eacute;atine monohydrate &ndash; &agrave; ajouter&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Cr&eacute;atine monohydrate &ndash; &agrave; ajouter&nbsp;?</div>
       <div class="fa">Suppl&eacute;ment le mieux document&eacute; en nutrition sportive &ndash; ISSN Position Stand 2021.<br>Dose&nbsp;: 3 &agrave; 5&nbsp;g/jour avec le repas OMAD.<br>Forme&nbsp;: monohydrate en poudre pure uniquement.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Quelle quantit&eacute; d&rsquo;eau par jour&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Quelle quantit&eacute; d&rsquo;eau par jour&nbsp;?</div>
       <div class="fa">En OMAD avec entra&icirc;nement, l&rsquo;hydratation est essentielle. R&eacute;partis tes apports en eau tout au long de la journ&eacute;e, pas uniquement au moment du repas. &Eacute;coute ton corps.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Pourquoi les prot&eacute;ines ne changent pas en jour de repos&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Pourquoi les prot&eacute;ines ne changent pas en jour de repos&nbsp;?</div>
       <div class="fa">La synth&egrave;se prot&eacute;ique musculaire reste active 24 &agrave; 48&nbsp;h apr&egrave;s l&rsquo;effort. Le repos n&rsquo;est pas un jour neutre &ndash; la reconstruction est en cours.<br>Ce sont les glucides et l&rsquo;huile qui diminuent, pas les prot&eacute;ines.<br>Source&nbsp;: Burd et al., 2011, Journal of Physiology.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Quels micronutriments cl&eacute;s ce plan apporte-t-il&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Quels micronutriments cl&eacute;s ce plan apporte-t-il&nbsp;?</div>
       <div class="fa">Ce plan int&egrave;gre les micronutriments essentiels &agrave; la performance et &agrave; la r&eacute;cup&eacute;ration&nbsp;:<br>
       Magn&eacute;sium&nbsp;: graines de courge, brocoli, riz complet, beurre de noix.<br>
       Zinc&nbsp;: viande, graines de courge, l&eacute;gumineuses.<br>
@@ -519,7 +618,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       La vitamine D est le seul micronutriment non couvert par ce plan &ndash; voir l&rsquo;entr&eacute;e d&eacute;di&eacute;e dans ce FAQ.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Comment fonctionne le mode Recomposition&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Comment fonctionne le mode Recomposition&nbsp;?</div>
       <div class="fa">En Recomposition, l&rsquo;objectif calorique est r&eacute;duit de fa&ccedil;on mod&eacute;r&eacute;e, adapt&eacute;e &agrave; ton profil. Objectif&nbsp;: perdre de la graisse en pr&eacute;servant le muscle.<br><br>
       Ce qui change&nbsp;: le riz est ajust&eacute; en cons&eacute;quence. L&rsquo;huile est fix&eacute;e &agrave; 14&nbsp;g.<br><br>
       Ce qui ne change pas&nbsp;: prot&eacute;ines maintenues &agrave; r&eacute;f&times;1,8&nbsp;g/kg.<br><br>
@@ -527,13 +626,255 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       Source&nbsp;: Phillips &amp; Van Loon, 2011.</div>
     </div>
     <div class="fi">
-      <div class="fq" data-faq-toggle>Ce programme est-il adapt&eacute; &agrave; tout le monde&nbsp;?</div>
+      <div class="fq" onclick="tog(this)">Ce programme est-il adapt&eacute; &agrave; tout le monde&nbsp;?</div>
       <div class="fa">Ce programme est fourni &agrave; titre informatif et &eacute;ducatif. Il ne remplace pas un avis m&eacute;dical.<br>Consulte un professionnel de sant&eacute; avant tout changement alimentaire important, en particulier en cas de pathologie existante, de traitement m&eacute;dical ou de grossesse.</div>
     </div>
   </div>
 </div>
 
 </div>
-<script src="app.js" defer></script>
+<script>
+'use strict';
+var M={
+  kefir:[4.0,67],prot:[23.0,110],sard:[23.3,236],leg:[8.0,101],
+  broc:[2.8,34],crud:[1.0,66],beurre:[25.0,629],pain:[8.5,259],
+  avocat:[2.0,160],graines:[24.6,543],fromage:[6.8,51],banane:[1.1,88],
+  fruits:[1.0,35],huile:[0.0,884],riz:[7.0,350]
+};
+var EGG_P=5.5,EGG_K=65;
+var cCase='A',cPoids=85,cMode='training';
+function r5(x){return Math.round(x/5)*5;}
+function r10(x){return Math.round(x/10)*10;}
+function coef(){return cCase==='A'?1:cCase==='B'?0.80:0.65;}
+function ref(){return Math.round(cPoids*coef());}
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+\b)/g,'\u202F');}
+function g(id){return document.getElementById(id);}
+
+/* V15 — header Nutrición Primal */
+
+function calcQ(ref){
+  var r=ref/85,q={};
+  q.kefir=Math.max(80,r5(150*r));
+  q.oeufs=Math.max(2,Math.min(5,Math.round(3*r)));
+  q.sard=Math.max(60,r5(100*r));
+  q.leg=Math.max(60,r5(100*r));
+  q.broc=Math.max(150,r10(250*r));
+  q.crud=Math.max(60,r5(120*r));
+  q.beurre=Math.max(20,r5(45*r));
+  q.pain=Math.max(30,r5(60*r));
+  q.avocat=Math.max(80,r5(150*r));
+  q.graines=Math.min(18,Math.max(6,Math.round(12*r)));
+  q.fromage=Math.max(100,r5(190*r));
+  q.banane=Math.max(50,r5(100*r));
+  q.fruits=Math.max(40,r5(80*r));
+  var fp=q.kefir*M.kefir[0]/100+q.oeufs*EGG_P+q.sard*M.sard[0]/100+q.leg*M.leg[0]/100+q.broc*M.broc[0]/100+q.crud*M.crud[0]/100+q.beurre*M.beurre[0]/100+q.pain*M.pain[0]/100+q.avocat*M.avocat[0]/100+q.graines*M.graines[0]/100+q.fromage*M.fromage[0]/100+q.banane*M.banane[0]/100+q.fruits*M.fruits[0]/100;
+  var fk=q.kefir*M.kefir[1]/100+q.oeufs*EGG_K+q.sard*M.sard[1]/100+q.leg*M.leg[1]/100+q.broc*M.broc[1]/100+q.crud*M.crud[1]/100+q.beurre*M.beurre[1]/100+q.pain*M.pain[1]/100+q.avocat*M.avocat[1]/100+q.graines*M.graines[1]/100+q.fromage*M.fromage[1]/100+q.banane*M.banane[1]/100+q.fruits*M.fruits[1]/100;
+  q.prot=Math.max(60,r5((ref*1.6-fp)/(M.prot[0]/100)));
+  var ngp=fp+q.prot*M.prot[0]/100;
+  if(cMode==='training'){
+    q.riz=Math.max(60,r10((ref*1.8-ngp)/(M.riz[0]/100)));
+    var sk=fk+q.prot*M.prot[1]/100+q.riz*M.riz[1]/100;
+    q.huile_g=Math.max(14,Math.round((ref*33+250-sk)/(M.huile[1]/100)));
+  } else if(cMode==='rest'){
+    q.huile_g=14;
+    var swr=fk+q.prot*M.prot[1]/100+q.huile_g*M.huile[1]/100;
+    q.riz=Math.max(60,r10((ref*30-swr)/(M.riz[1]/100)));
+  } else {
+    q.huile_g=14;
+    var sws=fk+q.prot*M.prot[1]/100+q.huile_g*M.huile[1]/100;
+    q.riz=Math.max(40,r10((ref*24-sws)/(M.riz[1]/100)));
+  }
+  q.total_p=Math.round(ngp+q.riz*M.riz[0]/100);
+  q.total_k=Math.round(fk+q.prot*M.prot[1]/100+q.riz*M.riz[1]/100+q.huile_g*M.huile[1]/100);
+  return q;
+}
+
+
+var ROT_FOODS={
+  protein:{chicken:{n:'Poulet / Dinde',p:23,k:110,u:'g'},fish:{n:'Poisson blanc',p:20,k:90,u:'g'},salmon:{n:'Saumon',p:20,k:200,u:'g'},beef:{n:'Bœuf maigre',p:20,k:150,u:'g'}},
+  legume:{beans:{n:'Haricots rouges en conserve',p:8,k:101,u:'g cuits'},lentils:{n:'Lentilles vertes',p:9,k:116,u:'g cuits'}},
+  carb:{rice:{n:'Riz complet',p:7,k:350,u:'g sec'},pasta:{n:'Pâtes complètes',p:13,k:352,u:'g sec'},oats:{n:'Flocons d’avoine',p:13,k:374,u:'g sec'},sweet:{n:'Patate douce',p:1.6,k:86,u:'g crus'},mix:{n:'50 % riz + 50 % flocons',p:10,k:362,u:'g sec'}},
+  butter:{peanut:{n:'Beurre de cacahuètes pur',p:25,k:629,u:'g'},almond:{n:'Beurre d’amandes pur',p:21,k:614,u:'g'}},
+  bread:{rye:{n:'Pain de seigle complet',p:8.5,k:259,u:'g'},whole:{n:'Pain complet',p:8.4,k:250,u:'g'},oatbread:{n:'Pain d’avoine complet',p:7,k:250,u:'g'}},
+  slow:{fromage:{n:'Fromage blanc 0 %',p:6.8,k:51,u:'g'},greek:{n:'Yaourt grec 0 %',p:10,k:57,u:'g'}}
+};
+function food(sel,grp){var e=g('rot-'+sel);var v=e?e.value:null;return ROT_FOODS[grp][v]||ROT_FOODS[grp][Object.keys(ROT_FOODS[grp])[0]];}
+function macro(item,qty){return {p:qty*item.p/100,k:qty*item.k/100};}
+function fixedBase(q){
+  var p=q.kefir*M.kefir[0]/100+q.oeufs*EGG_P+q.sard*M.sard[0]/100+q.broc*M.broc[0]/100+q.crud*M.crud[0]/100+q.avocat*M.avocat[0]/100+q.graines*M.graines[0]/100+q.banane*M.banane[0]/100+q.fruits*M.fruits[0]/100;
+  var k=q.kefir*M.kefir[1]/100+q.oeufs*EGG_K+q.sard*M.sard[1]/100+q.broc*M.broc[1]/100+q.crud*M.crud[1]/100+q.avocat*M.avocat[1]/100+q.graines*M.graines[1]/100+q.banane*M.banane[1]/100+q.fruits*M.fruits[1]/100;
+  return {p:p,k:k};
+}
+function rotTotals(base,qty,items){
+  var p=base.p,k=base.k;
+  ['protein','legume','carb','butter','bread','slow'].forEach(function(x){var m=macro(items[x],qty[x]);p+=m.p;k+=m.k;});
+  k+=qty.oil*M.huile[1]/100;
+  return {p:p,k:k};
+}
+function calcRot(){
+  var r=ref(), q=calcQ(r), targetP=q.total_p, targetK=q.total_k;
+  var items={protein:food('protein','protein'),legume:food('legume','legume'),carb:food('carb','carb'),butter:food('butter','butter'),bread:food('bread','bread'),slow:food('slow','slow')};
+  var base=fixedBase(q);
+  var qty={
+    protein:(q.prot*M.prot[0]/100)/(items.protein.p/100),
+    legume:(q.leg*M.leg[1]/100)/(items.legume.k/100),
+    carb:(q.riz*M.riz[1]/100)/(items.carb.k/100),
+    butter:(q.beurre*M.beurre[1]/100)/(items.butter.k/100),
+    bread:(q.pain*M.pain[1]/100)/(items.bread.k/100),
+    slow:(q.fromage*M.fromage[0]/100)/(items.slow.p/100),
+    oil:q.huile_g
+  };
+  var notes=[];
+  for(var i=0;i<5;i++){
+    var t=rotTotals(base,qty,items);
+    qty.protein+=((targetP-t.p)/(items.protein.p/100));
+    if(qty.protein<0)qty.protein=0;
+    t=rotTotals(base,qty,items);
+    var dk=targetK-t.k;
+    if(dk>0){
+      qty.carb+=(dk/(items.carb.k/100));
+      if(qty.carb<0)qty.carb=0;
+    }else if(dk<0){
+      var need=(-dk)/(M.huile[1]/100);
+      var cut=Math.min(qty.oil,need);
+      qty.oil-=cut;
+      var remain=need-cut;
+      if(remain>0){
+        qty.carb-=(remain*(M.huile[1]/100))/(items.carb.k/100);
+        if(qty.carb<0)qty.carb=0;
+      }
+    }
+  }
+  ['protein','legume','carb','butter','bread','slow'].forEach(function(x){qty[x]=Math.max(0,Math.round(qty[x]));});
+  qty.oil=Math.max(0,Math.round(qty.oil));
+  var total=rotTotals(base,qty,items);
+  total.p=Math.round(total.p);total.k=Math.round(total.k);
+  if(qty.oil<14)notes.push('Huile d’olive réduite sous 14 g pour compenser un aliment plus calorique.');
+  if(items.carb.n==='Patate douce' && qty.carb>=800)notes.push('Patate douce : portion très volumineuse. Option cohérente mathématiquement, moins pratique en OMAD.');
+  if(items.carb.n==='Patate douce' && qty.carb>=1200)notes.push('Alerte pratique : volume très élevé, mieux vaut choisir riz, pâtes, flocons ou mix 50/50.');
+  if(r>100 && items.carb.n!=='50 % riz + 50 % flocons')notes.push('Poids de référence > 100 kg : l’option 50 % riz + 50 % flocons reste la plus pratique pour limiter le volume.');
+  var dp=total.p-targetP, dk=total.k-targetK;
+  return {r:r,q:q,targetP:targetP,targetK:targetK,items:items,qty:qty,total:total,dp:dp,dk:dk,notes:notes};
+}
+function rotRow(name,qty,unit,sub){return '<div class="rot-final-row"><div><b>'+name+'</b><small>'+sub+'</small></div><strong>'+qty+'\u00A0'+unit+'</strong></div>';}
+function updRot(){
+  if(!g('rot-ref'))return;
+  var o=calcRot();
+  var modeLabel=cMode==='training'?'Entraînement':(cMode==='rest'?'Repos':'Recomposition');
+  g('rot-ref').textContent=o.r+' kg';
+  g('rot-mode').textContent=modeLabel;
+  g('rot-target-p').textContent=o.targetP+' g';
+  g('rot-target-k').textContent=fmt(o.targetK);
+  var map={protein:'protein',legume:'legume',carb:'carb',butter:'butter',bread:'bread',slow:'slow'};
+  Object.keys(map).forEach(function(id){var it=o.items[map[id]],q=o.qty[map[id]];var el=g('rot-q-'+id);if(el)el.textContent=fmt(q);var u=g('rot-u-'+id);if(u)u.textContent=it.u;});
+  var rows='';
+  rows+=rotRow(o.items.protein.n,o.qty.protein,o.items.protein.u,'Bloc protéique principal ajusté automatiquement');
+  rows+=rotRow(o.items.legume.n,o.qty.legume,o.items.legume.u,'Légumineuses recalculées');
+  rows+=rotRow(o.items.carb.n,o.qty.carb,o.items.carb.u,'Glucide ajusté comme levier calories');
+  rows+=rotRow('Huile d’olive',o.qty.oil,'g','Levier de compensation calorique');
+  rows+=rotRow(o.items.butter.n,o.qty.butter,o.items.butter.u,'Beurre de noix recalculé');
+  rows+=rotRow(o.items.bread.n,o.qty.bread,o.items.bread.u,'Pain recalculé');
+  rows+=rotRow(o.items.slow.n,o.qty.slow,o.items.slow.u,'Fermeture protéine lente recalculée');
+  g('rot-final-list').innerHTML=rows;
+  g('rot-total-p').textContent=o.total.p+'\u00A0g';
+  g('rot-total-k').textContent=fmt(o.total.k);
+  g('rot-cible-p').textContent=o.targetP+'\u00A0g';
+  g('rot-cible-k').textContent=fmt(o.targetK);
+  var st=g('rot-status');
+  var msg='Écart final après arrondi : protéines '+(o.dp>=0?'+':'')+o.dp+' g · calories '+(o.dk>=0?'+':'')+o.dk+' kcal.';
+  if(o.notes.length)msg+='<br>'+o.notes.join('<br>');
+  var bad=Math.abs(o.dp)>5||Math.abs(o.dk)>80;
+  var warn=o.notes.length||Math.abs(o.dp)>2||Math.abs(o.dk)>40;
+  st.className='rot-status '+(bad?'bad':warn?'warn':'ok');
+  st.innerHTML=msg;
+}
+
+function upd(){
+  var r=ref();
+  var pj=Math.round(r*1.8);
+  var ma=Math.round(r*33);
+  g('pv').textContent=cPoids;
+  g('pRef').textContent=r;
+  g('pProt').textContent=pj;
+  g('pMaint').textContent=fmt(ma);
+  var savedMode=cMode;
+  cMode='training';
+  var qT=calcQ(r);
+  cMode=savedMode;
+  g('pEntr').textContent=fmt(qT.total_k);
+  var isTrain=cMode==='training';
+  var isRecomp=cMode==='recomp';
+  var modeLabel=isTrain?'jour d\u2019entra\u00EEnement':isRecomp?'recomposition active':'jour de repos';
+  var kcalLabel=isTrain?'entra\u00EEnement':isRecomp?'recomposition':'repos';
+  g('mLbl').textContent=r+'\u00A0kg';
+  g('mMode').textContent=modeLabel;
+  g('tKlbl').textContent=kcalLabel;
+  g('recomp-banner').style.display=isRecomp?'block':'none';
+  var col=isRecomp?'bl':(!isTrain?'gr':'');
+  ['sn1','sn2','sn3','sn4','sn5','sn6'].forEach(function(id){
+    var e=g(id);if(!e)return;
+    e.className='snum'+(col?' '+col:'');
+  });
+  ['lb1','lb2','lb3','lb4','lb5','lb6'].forEach(function(id){
+    var e=g(id);if(!e)return;
+    e.className='slbl2'+(col?' '+col:'');
+  });
+  var q=calcQ(r);
+  g('m-kefir').textContent=q.kefir+'\u00A0g';
+  g('m-oeufs').textContent=q.oeufs+'\u00A0pi\u00E8ces';
+  g('m-prot').textContent=q.prot+'\u00A0g';
+  g('m-sardines').textContent=q.sard+'\u00A0g';
+  g('m-legumes').textContent=q.leg+'\u00A0g';
+  g('m-brocoli').textContent=q.broc+'\u00A0g';
+  g('m-huile').textContent=q.huile_g+'\u00A0g';
+  g('m-crudites').textContent=q.crud+'\u00A0g';
+  g('m-glucide').textContent=q.riz+'\u00A0g sec';
+  g('m-beurre').textContent=q.beurre+'\u00A0g';
+  g('m-pain').textContent=q.pain+'\u00A0g';
+  g('m-avocat').textContent=q.avocat+'\u00A0g';
+  g('m-graines').textContent=q.graines+'\u00A0g';
+  g('m-fromage').textContent=q.fromage+'\u00A0g';
+  g('m-banane').textContent=q.banane+'\u00A0g';
+  g('m-fruits').textContent=q.fruits+'\u00A0g';
+  g('tP').textContent=q.total_p+'\u00A0g';
+  g('tPC').textContent=pj;
+  g('tK').textContent=fmt(q.total_k);
+  var snoteProt=g('snote-prot');
+  snoteProt.textContent=isRecomp?'Prot\u00E9ines maintenues en Recomposition \u2014 le muscle se pr\u00E9serve par la prot\u00E9ine.':'Quantit\u00E9 poulet identique entra\u00EEnement et repos \u2014 prot\u00E9ine maintenue.';
+  var sn=g('snote-glucide');
+  if(r>100){
+    sn.innerHTML='Calcul\u00E9 sur riz complet. Varie selon le mode.<br><strong style="color:#C9A84C;">Poids de r\u00E9f\u00E9rence > 100\u00A0kg\u00A0: utilise 50\u00A0% riz + 50\u00A0% flocons d\u2019avoine pour ta portion totale de glucides. Dans ce cas, r\u00E9duis la quantit\u00E9 totale de poulet de 33\u00A0%.</strong>';
+  } else {
+    sn.textContent='Calcul\u00E9 sur riz complet (r\u00E9f\u00E9rence). Varie selon le mode.';
+  }
+  updRot();
+}
+function upP(v){cPoids=+v;upd();}
+function cas(c){
+  cCase=c;
+  ['A','B','C'].forEach(function(x){var e=g('prof'+x);if(e)e.classList.remove('on');});
+  var s=g('prof'+c);if(s)s.classList.add('on');
+  upd();
+}
+function setMode(mode,btn){
+  cMode=mode;
+  document.querySelectorAll('.mb').forEach(function(b){b.classList.remove('on-train','on-rest');});
+  document.querySelectorAll('.mb-recomp').forEach(function(b){b.classList.remove('on-recomp');});
+  if(btn){
+    if(mode==='training')btn.classList.add('on-train');
+    else if(mode==='rest')btn.classList.add('on-rest');
+    else btn.classList.add('on-recomp');
+  }
+  upd();
+}
+function show(id,btn){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});
+  var s=g(id);if(s)s.classList.add('on');
+  if(btn)btn.classList.add('on');
+}
+function tog(el){el.parentElement.classList.toggle('open');}
+upd();
+</script>
 </body>
 </html>
